@@ -47,6 +47,8 @@
         <div id="loadingCountry">Loading Countries...</div>
         <div id="output" style="display:none">
             <div id="loading" style="display:none">Loading...</div>
+            <div class="title">Population: </div>
+            <div class="result" id="population">0</div>
             <div class="title">Active Cases: </div>
             <div class="result" id="active-cases">0</div>
             <div class="title">New Cases: </div>
@@ -54,6 +56,8 @@
             <div class="title">Recovered Cases: </div>
             <div class="result" id="recovered-cases">0</div>
             <div class="title">Total Cases: </div>
+            <div class="result" id="critical">0</div>
+            <div class="title">Critical: </div>
             <div class="result" id="total-cases">0</div>
             <div class="title">Total Deaths: </div>
             <div class="result" id="total-deaths">0</div>
@@ -115,8 +119,10 @@
                     console.log(data);
                     const response = data.response[0];
                     document.getElementById("loading").style.display = "none";
+                    document.getElementById("population").innerHTML = (response.population === null ? "Data Tidak Tersedia" : numberWithCommas(response.population));
                     document.getElementById("active-cases").innerHTML = (response.cases.active === null ? "Data Tidak Tersedia" : numberWithCommas(response.cases.active));
                     document.getElementById("new-cases").innerHTML = (response.cases.new === null ? "Data Tidak Tersedia" : numberWithCommas(response.cases.new));
+                    document.getElementById("critical").innerHTML = (response.cases.critical === null ? "Data Tidak Tersedia" : numberWithCommas(response.cases.critical));
                     document.getElementById("recovered-cases").innerHTML = (response.cases.recovered === null ? "Data Tidak Tersedia" : numberWithCommas(response.cases.recovered));
                     document.getElementById("total-cases").innerHTML = (response.cases.total === null ? "Data Tidak Tersedia" : numberWithCommas(response.cases.total));
                     document.getElementById("total-deaths").innerHTML = (response.deaths.total === null ? "Data Tidak Tersedia" : numberWithCommas(response.deaths.total));
